@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
 import { getAllProducts } from "../API/APi"
-import Carousel from "../components/Carousel"
-import { HomeInformation } from "../components/HomeInformation"
-import HomeCategory from "../components/HomeCategory"
+import Carousel from "../components/Home/Carousel"
+import { HomeInformation } from "../components/Home/HomeInformation"
+import HomeCategory from "../components/Home/HomeCategory"
 
 
 const Home = () => {
@@ -10,12 +10,11 @@ const Home = () => {
     queryKey:["products"],
     queryFn:getAllProducts
   })
-  console.log(data)
   if(isError){
     alert("error")
   }
   return (
-    <main className={`pt-20 bg-gradient-to-bl from-purple-800 to-purple-950 w-full min-h-screen  ${isLoading?"flex justify-center items-center":""}`}>
+    <main className={`min-h-screen relative pt-20 bg-gradient-to-bl from-purple-800 to-purple-950 w-full pb-5 ${isLoading?"flex justify-center items-center":""}`}>
       {
         isLoading&&
       <>
@@ -24,11 +23,11 @@ const Home = () => {
       }
       {
         data&&
-        <div className="pb-5">
-          <Carousel />
-          <HomeInformation />
-          <HomeCategory allData={data} />
-        </div>
+          <div className="flex flex-col pb-5">
+            <Carousel />
+            <HomeInformation />
+            <HomeCategory allData={data} />
+         </div>
       }
     </main>
   )

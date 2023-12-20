@@ -1,10 +1,14 @@
 import { MdKeyboardArrowRight } from "react-icons/md"
-import { ButtonIcon } from "./ButtonIcon"
+import { ButtonIcon } from "../ButtonIcon"
 import { useNavigate } from "react-router"
+import { useNavbar } from "../../Store/store"
 export const HomeInformation = () => {
     const navigate=useNavigate()
-
-    const goToProduts=()=>navigate('/products')
+    const changeNavbar=useNavbar((state)=>state.changeNavbar)
+    const goToProduts=()=>{
+        navigate('/products')
+        changeNavbar("Products")
+    }
   return (
     <div className=" bg-[url('/public/bg.svg')] flex lg:flex-row flex-col-reverse lg:gap-0 gap-5 justify-center items-center h-[80vh] mt-10">
         <div className="grid grid-cols-2 place-items-center gap-3 px-20">
