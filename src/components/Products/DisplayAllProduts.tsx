@@ -16,6 +16,7 @@ const DisplayAllProduts = ({ dataProducts }: { dataProducts: [] }) => {
   const [allProductsDisplay, setAllProductsDisplay] = useState([]);
   const dataFilter = useFilter((state) => state.data);
   const searchFilter=useFilter((state)=>state.search)
+  const sorttingData=useFilter((state)=>state.sortingData)
 
   const filteringProducts = useMemo(
     () =>
@@ -28,15 +29,15 @@ const DisplayAllProduts = ({ dataProducts }: { dataProducts: [] }) => {
           return product.category === dataFilter;
         }
       }).sort((a,b)=>{
-        if(dataFilter==="cheapest"){
+        if(sorttingData==="cheapest"){
             return a.price-b.price
-        }else if(dataFilter==="expensive"){
+        }else if(sorttingData==="expensive"){
             return b.price-a.price
-        }else if(dataFilter==="Best Seller"){
+        }else if(sorttingData==="Best Seller"){
           return b.rating.rate-a.rating.rate
         }
       }),
-    [dataFilter,searchFilter]
+    [dataFilter,searchFilter,sorttingData]
   );
 
 

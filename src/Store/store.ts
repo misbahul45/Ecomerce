@@ -4,8 +4,10 @@ import { PersistOptions, persist } from "zustand/middleware";
 type FilteringData = {
   data: string;
   search:string;
+  sortingData:string;
   changeSearch:(search:string)=>void;
   changeData: (dataValue: string) => void;
+  changeDataSorting:(value:string)=>void
 };
 
 type NavbarData = {
@@ -52,9 +54,11 @@ type logOutDataType=(
 export const useFilter = create<FilteringData>(
   (persist as FilterData)((set: any): FilteringData => ({
     data: "all",
+    sortingData:"",
     search:"",
     changeSearch:(dataValue)=>set({search:dataValue}),
     changeData: (dataValue) => set({ data: dataValue }),
+    changeDataSorting:(value)=>set({sortingData:value})
   }), { name: "filter_data" })
 );
 
@@ -72,7 +76,7 @@ export const useAuth = create<authData>(
     addToCarts: (value) => set((state)=>{
       const findValue=state.data.carts.findIndex((item)=>item.id===value.id)
       if(findValue !== -1){
-        state.data.carts[findValue].quantity=state.data.carts[findValue].quantity+value.quantity
+        state.data.carts[findValue].quantity=value.quantity
       }else{
         state.data.carts.push(value)
       }
@@ -82,9 +86,8 @@ export const useAuth = create<authData>(
       state.data.carts=state.data.carts.filter((item)=>item.id!==id)
       return {...state}
     }),
-    addCheckOut:(value, addOrMinus)=>set((state)=>{
+    addCheckOut:(value)=>set((state)=>{
       const findData=state.data.checkout.findIndex((item)=>item.id===value.id)
-      console.log(value.quantity)
       if(findData!==-1){
         state.data.checkout[findData].quantity=value.quantity
       } else{

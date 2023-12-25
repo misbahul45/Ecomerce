@@ -15,40 +15,69 @@ interface Product{
 
 interface Props{
     product:Product,
-    removeToCarts:any
+    setCarts:any;
+    setCheckoutData:any;
+    checkoutDataObject:object[];
+    carts:object [];
 }
-const Tr = ({ product, removeToCarts }:Props) => {
+const Tr = ({ product, setCarts, setCheckoutData, checkoutDataObject }:Props) => {
     const checkoutData=useAuth((state)=>state.data.checkout)
-
     const [quantity, setQuantity]=useState(product.quantity)
-    const [checkout, setCheckout]=useState(
-        checkoutData.findIndex((item)=>item.id==product.id)!==-1?true:false
-    )
-    
-    console.log(checkoutData)
-    const addCheckout=useAuth((state)=>state.addCheckOut)
-    const removeCheckOut=useAuth((state)=>state.removeCheckOut)
+    const [checkout,setCheckout]=useState(checkoutData.findIndex((d)=>d.id===product.id)!==-1?true:false)
+
+    const addToCarts=useAuth((state)=>state.addToCarts)
+    const removeToCarts=useAuth((state)=>state.removeToCarts)
+    const addToCheckout=useAuth((state)=>state.addCheckOut)
+    const removeCheckout=useAuth((state)=>state.removeCheckOut)
+
 
 
     const handleCheckoutProduct=()=>{
         setCheckout(!checkout)
-        if(checkout){
-            removeCheckOut(product.id)
-        }else{
-            addCheckout({
+        if(!checkout){
+            addToCheckout({
                 ...product,
                 quantity
             })
+            checkoutDataObject.length>1?setCheckoutData(prev=>[...prev,{...product,quantity}]):setCheckoutData([{...product,quantity}])
+        }else{
+            removeCheckout(product.id)
+            setCheckoutData(prev=>prev.filter((p)=>p.id!==product.id))
         }
+    }
+    const handleDelete=()=>{
+        removeCheckout(product.id)
+        removeToCarts(product.id)
+        setCarts(prev=>prev.filter((p)=>p.id!==product.id))
+        setCheckoutData(prev=>prev.filter((p)=>p.id!==product.id))
+
     }
     useEffect(()=>{
         if(checkout){
-            addCheckout({
+            addToCheckout({
+                ...product,
+                quantity
+            })
+            setCheckoutData(prev => {
+                prev.forEach((d, i) => {
+                  if (d.id === product.id) {
+                    prev[i].quantity = quantity;
+                  }
+                });
+                return [...prev];
+              });
+              
+        }else{
+            addToCarts({
                 ...product,
                 quantity
             })
         }
-    },[quantity])   
+    },[quantity])
+
+
+
+ 
 
   return (
     <tr className="border-t-2 w-full text-center">
@@ -68,7 +97,7 @@ const Tr = ({ product, removeToCarts }:Props) => {
             <span className="text-orange-500 text-2xl">{(quantity* product.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
         </td>
         <td>
-            <ButtonIcon onClick={()=>removeToCarts(product.id)} className="group" Icon={MdDeleteForever} IconClassName="text-3xl text-red-700 group-hover:scale-110 transition-all duration-300" />
+            <ButtonIcon onClick={handleDelete} className="group" Icon={MdDeleteForever} IconClassName="text-3xl text-red-700 group-hover:scale-110 transition-all duration-300" />
         </td>
     </tr>
   )

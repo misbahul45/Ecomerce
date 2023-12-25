@@ -11,7 +11,7 @@ export interface DisplayProducts{
     title: string;
     description: string;
     price: number;
-    image: any;
+    image: string;
     rating: {
         rate: number;
     };
@@ -21,11 +21,11 @@ interface Category{
 }
 
 const HomeCategory = ({allData=[]}:categoryProp) => {
-    const [currentDisplay, setCurrenDisplay]=useState(0)
+    const [currentDisplay, setCurrenDisplay]=useState<number>(0)
     const allCategory : string[] = useMemo(() =>[...new Set(allData.map((datum:Category)=>datum.category))] , [allData])
     const displayCategory={
         title:allCategory[currentDisplay],
-        data:useMemo(()=>allData.filter((data:Category)=>data.category===allCategory[currentDisplay]).slice(0,4),[allData,currentDisplay])
+        data:useMemo(()=>allData.filter((data:Category)=>data.category===allCategory[currentDisplay]).slice(0,4),[currentDisplay])
     }
     const handlePrev=()=>{
         currentDisplay===0?setCurrenDisplay(allCategory.length-1):setCurrenDisplay((prev)=>prev-1)

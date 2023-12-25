@@ -15,7 +15,7 @@ const App = () => {
   const user:{user:string}=useAuth((state)=>state.data)
   return (
     <Router>
-      <Navbar />
+      {user.user&&<Navbar />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -24,12 +24,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/detail/:id" element={<ProductDetail />} />
         </Routes>
-        {
-          user.user?
-          <Footer />
-          :
-          ""
-        }
+        {user.user&&<Footer />}
     </Router>
   )
 }

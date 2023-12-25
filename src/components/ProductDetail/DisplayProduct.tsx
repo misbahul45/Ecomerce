@@ -20,9 +20,7 @@ interface Props{
 
 const DisplayProduct = ({product}:Props) => {
     const [quantity, setQuantity]=useState<number>(1)
-    const user=useAuth((state)=>state.data)
     const addToCarts=useAuth((state)=>state.addToCarts)
-    console.log(user)
 
     const rate=product.rating.rate
     let star=[]
@@ -51,7 +49,7 @@ const DisplayProduct = ({product}:Props) => {
             <span className="mt-2 flex items-center">{star}</span>
             <p className=" mt-4 text-lg text-slate-200">{product.description}</p>
             <p className="mt-4 flex flex-col">
-                <span className="text-3xl text-orange-600 font-semibold">{product.price.toLocaleString('en-US', {
+                <span className="text-3xl text-orange-600 font-semibold">{(product.price*quantity).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',
                         })}

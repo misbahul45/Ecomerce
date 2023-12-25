@@ -15,6 +15,7 @@ export const Navbar = () => {
     const userLogOut=useLogout((state)=>state.changeLogout)
     const userAuth=useAuth((state)=>state.data)
     const changeAuth=useAuth((state)=>state.changeAuth)
+    const carts=useAuth((state)=>state.data.carts)
     const name:string=userAuth.user||""
 
     const navigate=useNavigate()
@@ -75,7 +76,7 @@ export const Navbar = () => {
            {
             name?
             <>
-                <ButtonIcon onClick={handleToCart } Icon={FaCartFlatbed} className="p-1.5 hover:bg-gray-100 hover:scale-110 rounded-full transition-all duration-300" IconClassName="text-red-500 text-2xl" />
+                <ButtonIcon onClick={handleToCart } Icon={FaCartFlatbed} text={carts.length>0?carts.length:""}  className="relative p-1.5 hover:bg-gray-100 hover:scale-110 rounded-full transition-all duration-300" IconClassName="text-red-500 text-3xl" textClassName="absolute -top-1 right-0 text-sm text-green-500 font-bold px-1.5 rounded-full bg-white" />
                 <div className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-green-600"></span>
                     <h1 className="text-2xl text-slate-100 font-bold font-serif">{name}</h1>

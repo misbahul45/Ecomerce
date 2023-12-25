@@ -15,6 +15,7 @@ const Poster = ({data}:{ data:[] }) => {
             setProductName('')
         }
     }
+    
   return (
     <div className="w-full bg-[url('/public/bg.svg')] bg-center h-56 py-1 rounded-b-full shadow-xl shadow-white/30">
         <h1 className="text-center my-4 text-5xl font-semibold font-sans text-slate-100 ">Get The Best Products</h1>
