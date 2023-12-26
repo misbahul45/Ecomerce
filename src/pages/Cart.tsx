@@ -13,7 +13,6 @@ const Cart = () => {
   
   const totalPrice=(checkoutData.map((checkout)=>(checkout.price*checkout.quantity)).reduce((a:number,b:number)=>a+b,0))
   const checkoutProduct=checkoutData.map((data)=>data.quantity).reduce((a:number,b:number)=>a+b,0)
-
   return (
     <div className="relative pt-24 px-20 bg-gradient-to-bl from-purple-800 to-purple-950">
       <div className={`w-full ${carts.length>0?"min-h-screen":"h-96"} pb-10 no-scrollbar`}>
@@ -32,7 +31,7 @@ const Cart = () => {
           <tbody>
           {
             carts.map((product)=>(
-              <Tr checkoutDataObject={checkoutData} setCheckoutData={setCheckoutData} setCarts={setCarts} carts={carts} key={product.id}  product={product} />
+              <Tr  setCheckoutData={setCheckoutData} setCarts={setCarts} carts={carts} key={product.id}  product={product} />
             ))
           }
           </tbody>

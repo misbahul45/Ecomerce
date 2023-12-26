@@ -9,15 +9,14 @@ import { Data } from "../Navbar";
 
 interface Props {
     product: Product;
-    setCarts: React.Dispatch<React.SetStateAction<Product[]>>;
-    setCheckoutData: React.Dispatch<React.SetStateAction<Product[]>>;
-    checkoutDataObject: object[];
+    setCarts: React.Dispatch<React.SetStateAction<Data[]>>;
+    setCheckoutData: React.Dispatch<React.SetStateAction<Data[]>>;
     carts: Data[]; 
 }
 
 
 
-const Tr = ({ product, setCarts, setCheckoutData, checkoutDataObject }:Props) => {
+const Tr = ({ product, setCarts, setCheckoutData }:Props) => {
     const dataUser=useAuth((state)=>state.data) as AuthState
 
     const checkoutData=dataUser.checkout as Data[]
@@ -38,7 +37,7 @@ const Tr = ({ product, setCarts, setCheckoutData, checkoutDataObject }:Props) =>
                 ...product,
                 quantity
             })
-            checkoutDataObject.length>1?setCheckoutData(prev=>[...prev,{...product,quantity}]):setCheckoutData([{...product,quantity}])
+            setCheckoutData(checkoutData)
         }else{
             removeCheckout(product.id)
             setCheckoutData(prev=>prev.filter((p)=>p.id!==product.id))

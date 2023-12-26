@@ -13,7 +13,7 @@ interface ProductItemProp{
 }
 const ProductItem = ({ id,title,description, image, price, rate, product="" }:ProductItemProp) => {
     const changeNavbar=useNavbar((state)=>state.changeNavbar)
-        let star=[]
+        const star=[]
         for(let i=1; i<=5;i++){
            if(i === Math.ceil(rate) && rate > (Math.floor(rate)+0.5)){
             star.push(<FaStarHalfAlt key={i} className="text-yellow-400" />)
@@ -26,7 +26,7 @@ const ProductItem = ({ id,title,description, image, price, rate, product="" }:Pr
         
         const handleClick=()=>{
             changeNavbar('Products')
-            if(product="product"){
+            if(product==="product"){
                 window.scrollTo({
                     top:0,
                     behavior:'smooth'                   
