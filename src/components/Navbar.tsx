@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useAuth, useLogout, useNavbar } from "../Store/store"
-import { jwtDecode } from "jwt-decode";
+
 import { FaCartFlatbed } from "react-icons/fa6";
 import { ButtonIcon } from "./ButtonIcon";
 
@@ -11,12 +11,35 @@ enum navbar{
     login="Login",
     signup="SignUp",
 }
+export interface Product{
+    id:number,
+    title:string,
+    image:string,
+    quantity:number,
+    price:number
+}
+export interface Data {
+    product: Product;
+    quantity: number;
+    id: number;
+    title: string;
+    image: string;
+    price: number;
+  }
+  
+export interface AuthState {
+    user:string;
+    carts:Data[];
+    checkout:Data[];
+
+}
 export const Navbar = () => {
     const userLogOut=useLogout((state)=>state.changeLogout)
-    const userAuth=useAuth((state)=>state.data)
+    const userAuth=useAuth((state)=>state.data) as AuthState
     const changeAuth=useAuth((state)=>state.changeAuth)
-    const carts=useAuth((state)=>state.data.carts)
-    const name:string=userAuth.user||""
+
+    const carts=userAuth.carts
+    const name=userAuth.user||""
 
     const navigate=useNavigate()
     const [bg,setBg]=useState(false)
@@ -76,7 +99,7 @@ export const Navbar = () => {
            {
             name?
             <>
-                <ButtonIcon onClick={handleToCart } Icon={FaCartFlatbed} text={carts.length>0?carts.length:""}  className="relative p-1.5 hover:bg-gray-100 hover:scale-110 rounded-full transition-all duration-300" IconClassName="text-red-500 text-3xl" textClassName="absolute -top-1 right-0 text-sm text-green-500 font-bold px-1.5 rounded-full bg-white" />
+                <ButtonIcon onClick={handleToCart } Icon={FaCartFlatbed} text={carts.length>0?carts.length:""}  className="relative p-1.5 hover:bg-gray-100 hover:scale-110 rounded-full transition-all duration-300" IconClassName="text-blue-500 text-3xl" textClassName="absolute -top-1 right-0 text-sm text-green-500 font-bold px-1.5 rounded-full bg-white" />
                 <div className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-green-600"></span>
                     <h1 className="text-2xl text-slate-100 font-bold font-serif">{name}</h1>

@@ -2,6 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar, FaCartPlus, FaTruckPickup } from "rea
 import Quantity from "./quantity"
 import { useState } from "react"
 import { useAuth } from "../../Store/store"
+import { useNavigate } from "react-router"
 interface Product{
     title:string,
     image:string,
@@ -21,9 +22,11 @@ interface Props{
 const DisplayProduct = ({product}:Props) => {
     const [quantity, setQuantity]=useState<number>(1)
     const addToCarts=useAuth((state)=>state.addToCarts)
+    const addToCheckout=useAuth((state)=>state.addCheckOut)
+    const navigate=useNavigate()
 
     const rate=product.rating.rate
-    let star=[]
+    const star=[]
     for(let i=1; i<=5;i++){
        if(i === Math.ceil(rate) && rate > (Math.floor(rate)+0.5)){
         star.push(<FaStarHalfAlt key={i} className="text-yellow-400 text-sm" />)
@@ -33,11 +36,22 @@ const DisplayProduct = ({product}:Props) => {
        star.push(<FaRegStar key={i} className="text-yellow-400 text-sm" />)
        }
     }
-    const handleaddToCart=()=>{
+    const handleAddToCart=()=>{
         addToCarts({
             ...product,
              quantity 
            })
+    }
+    const handleToCheckout=()=>{
+        addToCarts({
+            ...product,
+             quantity 
+        })
+        addToCheckout({
+            ...product,
+            quantity
+        })   
+        navigate("/cart")
     }
   return (
     <div className="flex w-full px-20 gap-10">
@@ -65,11 +79,11 @@ const DisplayProduct = ({product}:Props) => {
                 <span className="text-slate-300 text-xl">{product.rating.count} amount </span>
             </div>
             <div className="flex items-center gap-6 mt-8">
-                <button onClick={handleaddToCart} className="flex items-center justify-center gap-4 w-48 h-11 bg-orange-600 ring-2 ring-slate-100 rounded-full hover:bg-yellow-600 hover:scale-105 transition-all duration-300">
+                <button onClick={handleAddToCart} className="flex items-center justify-center gap-4 w-48 h-11 bg-orange-600 ring-2 ring-slate-100 rounded-full hover:bg-yellow-600 hover:scale-105 transition-all duration-300">
                     <FaCartPlus className="text-xl text-slate-100" />
                     <span className="font-semibold text-sm font-serif text-slate-100">Add To Cart</span>
                 </button>
-                <button className="flex items-center justify-center gap-4 w-48 h-11 bg-red-600 ring-2 ring-slate-100 rounded-full hover:bg-green-600 hover:scale-105 transition-all duration-300">
+                <button onClick={handleToCheckout} className="flex items-center justify-center gap-4 w-48 h-11 bg-red-600 ring-2 ring-slate-100 rounded-full hover:bg-green-600 hover:scale-105 transition-all duration-300">
                     <FaTruckPickup className="text-xl text-slate-100" />
                     <span className="font-semibold text-sm text-slate-100">Checkout</span>
                 </button>

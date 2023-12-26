@@ -1,6 +1,10 @@
 import { FaMinus } from "react-icons/fa"
 import { FaPlus } from "react-icons/fa"
-const Quantity = ( { quantity, setQuantity }:{ quantity:number, setQuantity:any}) => {
+interface QuantityProps {
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+}
+const Quantity = ( { quantity, setQuantity }:QuantityProps) => {
     const handleMinus=():void=>{
         quantity==1?quantity:setQuantity((prev:number)=>prev-1)
     }

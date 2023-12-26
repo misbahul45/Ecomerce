@@ -32,15 +32,18 @@ const FormAuth = ({ signUp }:{ signUp:boolean }) => {
     })
     const { mutate:mutateSignUp }=useMutation({
         mutationKey:["signUp"],
-        mutationFn:()=>signUpUser({
-            username:userName,
-            email,
-            password,
-        }),
+        mutationFn: async () => {
+            const response = await signUpUser({
+                username: userName,
+                password: password,
+                email:email
+            });
+            return response.data;
+        },
         onSuccess:(data:{id:number})=>{
             navigate('/')
             const userValue={
-                id:data.data.id,
+                id:data.id,
                 user:userName,
                 password,
                 email,
@@ -61,6 +64,10 @@ const FormAuth = ({ signUp }:{ signUp:boolean }) => {
         try{
             if(userName!==""&& password!==""){
                 await mutateLogin()
+            }else{
+                alert("Somethings Wrong")
+                setPassword('')
+                setUserName('')
             }
         }catch(e){
             alert("please login again")
@@ -71,6 +78,11 @@ const FormAuth = ({ signUp }:{ signUp:boolean }) => {
         try{
             if(userName!==""&& password!=="" && email!==""){
                 await mutateSignUp()
+            }else{
+                alert("Somethings Wrong")
+                setEmail('')
+                setPassword('')
+                setUserName('')
             }
         }catch(e){
             alert("please sign  again")

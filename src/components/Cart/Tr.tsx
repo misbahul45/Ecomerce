@@ -3,26 +3,25 @@ import { ButtonIcon } from "../ButtonIcon";
 import { useEffect, useState } from "react";
 import Quantity from "../ProductDetail/quantity";
 import { useAuth } from "../../Store/store";
+import { AuthState, Product } from "../Navbar";
+import { Data } from "../Navbar";
 
 
-interface Product{
-    id:number,
-    title:string,
-    image:string,
-    quantity:number,
-    price:number
+interface Props {
+    product: Product;
+    setCarts: React.Dispatch<React.SetStateAction<Product[]>>;
+    setCheckoutData: React.Dispatch<React.SetStateAction<Product[]>>;
+    checkoutDataObject: object[];
+    carts: Data[]; 
 }
 
-interface Props{
-    product:Product,
-    setCarts:any;
-    setCheckoutData:any;
-    checkoutDataObject:object[];
-    carts:object [];
-}
+
+
 const Tr = ({ product, setCarts, setCheckoutData, checkoutDataObject }:Props) => {
-    const checkoutData=useAuth((state)=>state.data.checkout)
-    const [quantity, setQuantity]=useState(product.quantity)
+    const dataUser=useAuth((state)=>state.data) as AuthState
+
+    const checkoutData=dataUser.checkout as Data[]
+    const [quantity, setQuantity]=useState<number>(product.quantity)
     const [checkout,setCheckout]=useState(checkoutData.findIndex((d)=>d.id===product.id)!==-1?true:false)
 
     const addToCarts=useAuth((state)=>state.addToCarts)
@@ -52,32 +51,30 @@ const Tr = ({ product, setCarts, setCheckoutData, checkoutDataObject }:Props) =>
         setCheckoutData(prev=>prev.filter((p)=>p.id!==product.id))
 
     }
-    useEffect(()=>{
-        if(checkout){
+
+
+    useEffect(() => {
+        if (checkout) {
             addToCheckout({
                 ...product,
-                quantity
-            })
-            setCheckoutData(prev => {
+                quantity,
+            });
+            setCheckoutData((prev) => {
                 prev.forEach((d, i) => {
-                  if (d.id === product.id) {
-                    prev[i].quantity = quantity;
-                  }
+                    if (d.id === product.id) {
+                        prev[i].quantity = quantity;
+                    }
                 });
                 return [...prev];
-              });
-              
-        }else{
+            });
+        } else {
             addToCarts({
                 ...product,
-                quantity
-            })
+                quantity,
+            });
         }
-    },[quantity])
-
-
-
- 
+    }, [quantity, addToCarts, addToCheckout, checkout, product, setCheckoutData]);
+     
 
   return (
     <tr className="border-t-2 w-full text-center">
