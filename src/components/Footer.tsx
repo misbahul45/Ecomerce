@@ -12,7 +12,7 @@ const Footer = () => {
         })
     }
   return (
-    <div className="relative w-full bg-[url('/public/bg.svg')] bg-center lg:px-32 sm:px-12 px-1 text-center">
+    <div className="relative w-full bg-[url('/src/assets/bg.svg')] bg-center lg:px-32 sm:px-12 px-1 text-center">
         <ButtonIcon onClick={handleToTop} Icon={FaArrowCircleUp} className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-100 rounded-full shadow-lg shadow-white/10 hover:scale-105 transition-all duration-200" IconClassName="text-4xl text-red-700" />
         <div className="w-full flex lg:flex-row flex-col  gap-5 lg:justify-between items-center py-5">
             <div className="flex-1">

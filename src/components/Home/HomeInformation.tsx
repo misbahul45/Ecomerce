@@ -10,7 +10,7 @@ export const HomeInformation = () => {
         changeNavbar("Products")
     }
   return (
-    <div className=" bg-[url('/public/bg.svg')] flex lg:flex-row flex-col lg:gap-0 gap-5 justify-center items-center lg:h-[80vh] lg:py-0 py-20 mt-10 px-7 lg:px-0">
+    <div className=" bg-[url('/src/assets/bg.svg')] flex lg:flex-row flex-col lg:gap-0 gap-5 justify-center items-center lg:h-[80vh] lg:py-0 py-20 mt-10 px-7 lg:px-0">
         <div className="flex-1 lg:px-10">
             <div className="flex-col justify-center items-center mb-5">
                 <h2 className="text-4xl font-semibold text-slate-50 mb-5">Providing the best product choices</h2>

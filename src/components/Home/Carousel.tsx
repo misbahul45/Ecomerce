@@ -5,13 +5,13 @@ const Carousel = () => {
     const [currentImg, setCurrentImg]=useState<number>(0)
     const [animate,setAnimate]=useState(false)
     const images=[
-     "/public/c-1.avif",
-     "/public/c-2.avif",
-     "/public/c-3.avif",
-     "/public/c-4.avif",
-     "/public/c-5.avif",
-     "/public/c-6.avif",
-     "/public/c-7.avif",
+     "/src/assets/c-1.avif",
+     "/src/assets/c-2.avif",
+     "/src/assets/c-3.avif",
+     "/src/assets/c-4.avif",
+     "/src/assets/c-5.avif",
+     "/src/assets/c-6.avif",
+     "/src/assets/c-7.avif",
     ]
     useEffect(() => {
         const interval = setInterval(() => {

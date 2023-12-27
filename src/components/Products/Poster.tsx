@@ -17,7 +17,7 @@ const Poster = ({data}:{ data:[] }) => {
     }
     
   return (
-    <div className="w-full bg-[url('/public/bg.svg')] bg-center pb-5 lg:rounded-b-full shadow-xl shadow-white/30">
+    <div className="w-full bg-[url('/src/assets/bg.svg')] bg-center pb-5 lg:rounded-b-full shadow-xl shadow-white/30">
         <h1 className="text-center my-4 lg:text-5xl text-3xl font-semibold font-sans text-slate-100 ">Get The Best Products</h1>
             <div className="flex-1 flex flex-col items-center gap-4">
                 <div className="flex items-center flex-wrap lg:gap-0 gap-4 justify-center px-2">
