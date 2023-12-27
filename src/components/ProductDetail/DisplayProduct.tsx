@@ -1,21 +1,13 @@
 import { FaStar, FaStarHalfAlt, FaRegStar, FaCartPlus, FaTruckPickup } from "react-icons/fa"
 import Quantity from "./quantity"
 import { useState } from "react"
-import { useAuth } from "../../Store/store"
+import { CartItem, useAuth } from "../../Store/store"
 import { useNavigate } from "react-router"
-interface Product{
-    title:string,
-    image:string,
-    rating:{
-        rate:number,
-        count:number
-    },
-    description:string,
-    price:number
-}
+
+
 
 interface Props{
-    product:Product
+    product:CartItem
 }
 
 

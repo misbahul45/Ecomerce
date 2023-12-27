@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 import { useNavigate } from "react-router"
-import { useAuth, useLogout, useNavbar } from "../Store/store"
+import { CartItem, useAuth, useLogout, useNavbar } from "../Store/store"
 
 import { FaCartFlatbed } from "react-icons/fa6";
 import { ButtonIcon } from "./ButtonIcon";
@@ -11,27 +11,11 @@ enum navbar{
     login="Login",
     signup="SignUp",
 }
-export interface Product{
-    id:number,
-    title:string,
-    image:string,
-    quantity:number,
-    price:number
-}
-export interface Data {
-    product: Product;
-    quantity: number;
-    id: number;
-    title: string;
-    image: string;
-    price: number;
-  }
   
 export interface AuthState {
     user:string;
-    carts:Data[];
-    checkout:Data[];
-
+    carts:CartItem[];
+    checkout:CartItem[];
 }
 export const Navbar = () => {
     const userLogOut=useLogout((state)=>state.changeLogout)
@@ -47,7 +31,7 @@ export const Navbar = () => {
     const dataNavbar=useNavbar((state)=>state.data)
     const changeNavbar=useNavbar((state)=>state.changeNavbar)
     const [navbarPosition, setNavbarPosition]=useState(dataNavbar)
-
+    
     const handleRoute=(route:string)=>{
         if(route==="Home"){
             navigate('/')
@@ -69,7 +53,10 @@ export const Navbar = () => {
     }
     const handleLogOut=()=>{
         userLogOut(userAuth)
-        changeAuth({})
+        changeAuth({  
+            carts: [],
+            checkout:[]
+        })
         navigate('/login')
     }
 

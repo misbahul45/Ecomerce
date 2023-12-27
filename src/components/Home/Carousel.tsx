@@ -48,7 +48,7 @@ const Carousel = () => {
             <img className={`w-full h-[30rem] object-cover rounded-sm ${animate?"opacity-0":"opacity-100"} transition-all duration-200 drop-shadow-2xl`} src={images[currentImg]} alt="" />
             <div className="flex gap-1 justify-center mt-4">
                 {
-                images.map((img,index:number)=>(
+                images.map((_,index:number)=>(
                     <span onClick={()=>setCurrentImg(index)} key={index} className={`w-2 h-2 rounded-full  cursor-pointer ${currentImg==index?"bg-red-500 scale-125":"bg-purple-500"}`}></span>
                 )) 
                 }

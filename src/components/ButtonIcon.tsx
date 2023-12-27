@@ -12,7 +12,11 @@ export const ButtonIcon = ({ onClick,Icon, text="", className, IconClassName="",
   return (
     <>
       <button type="button" onClick={onClick} className={className}>
-            {Icon&&<Icon className={IconClassName} />}
+            {Icon&&
+              <div className={IconClassName}>
+                <Icon />
+              </div>
+            }
             <span className={textClassName}>{text}</span>
     </button>
     </>

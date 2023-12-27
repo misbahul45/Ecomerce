@@ -2,16 +2,15 @@ import { MdOutlineRadioButtonChecked,MdOutlineRadioButtonUnchecked, MdDeleteFore
 import { ButtonIcon } from "../ButtonIcon";
 import { useEffect, useState } from "react";
 import Quantity from "../ProductDetail/quantity";
-import { useAuth } from "../../Store/store";
-import { AuthState, Product } from "../Navbar";
-import { Data } from "../Navbar";
+import { CartItem, useAuth } from "../../Store/store";
+import { AuthState } from "../Navbar";
 
 
 interface Props {
-    product: Product;
-    setCarts: React.Dispatch<React.SetStateAction<Data[]>>;
-    setCheckoutData: React.Dispatch<React.SetStateAction<Data[]>>;
-    carts: Data[]; 
+    product: CartItem;
+    setCarts: React.Dispatch<React.SetStateAction<CartItem[]>>;
+    setCheckoutData: React.Dispatch<React.SetStateAction<CartItem[]>>;
+    carts: CartItem[]; 
 }
 
 
@@ -19,7 +18,7 @@ interface Props {
 const Tr = ({ product, setCarts, setCheckoutData }:Props) => {
     const dataUser=useAuth((state)=>state.data) as AuthState
 
-    const checkoutData=dataUser.checkout as Data[]
+    const checkoutData=dataUser.checkout as CartItem[]
     const [quantity, setQuantity]=useState<number>(product.quantity)
     const [checkout,setCheckout]=useState(checkoutData.findIndex((d)=>d.id===product.id)!==-1?true:false)
 

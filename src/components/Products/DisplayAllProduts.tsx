@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useFilter } from "../../Store/store";
+import {  useFilter } from "../../Store/store";
 import ProductItem from "../ProductItem";
 
 export interface DisplayProducts{
@@ -7,9 +7,10 @@ export interface DisplayProducts{
     title: string;
     description: string;
     price: number;
-    image: any;
+    image: string;
     rating: {
-        rate: number;
+        rate: number,
+        count:number
     };
 }
 const DisplayAllProduts = ({ dataProducts }: { dataProducts: [] }) => {
@@ -28,7 +29,7 @@ const DisplayAllProduts = ({ dataProducts }: { dataProducts: [] }) => {
         }else{
           return product.category === dataFilter;
         }
-      }).sort((a,b)=>{
+      }).sort((a:DisplayProducts,b:DisplayProducts)=>{
         if(sortingData==="cheapest"){
             return a.price-b.price
         }else if(sortingData==="expensive"){
@@ -36,8 +37,9 @@ const DisplayAllProduts = ({ dataProducts }: { dataProducts: [] }) => {
         }else if(sortingData==="Best Seller"){
           return b.rating.rate-a.rating.rate
         }
+        return 0
       }),
-    [dataFilter,searchFilter,sortingData]
+      [dataProducts, dataFilter, searchFilter, sortingData]
   );
 
 
