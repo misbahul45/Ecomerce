@@ -90,8 +90,8 @@ const FormAuth = ({ signUp }:{ signUp:boolean }) => {
     }
 
   return (
-    <form onSubmit={(e)=>e.preventDefault()} className="w-full max-w-sm items-center justify-center">
-        <label htmlFor="userName" className="w-full flex flex-col ">
+    <form onSubmit={(e)=>e.preventDefault()} className="w-full lg:max-w-md lg:px-5 md:max-w-sm max-w-xs items-center justify-center">
+        <label htmlFor="userName" className="w-full flex flex-col">
             <span className="text-lg mb-2 font-semibold text-slate-100">Username</span>
            <input value={userName} onChange={(e)=>setUserName(e.target.value)} className="px-4 py-1.5 outline-none rounded-md text-slate-800 font-semibold ring-2 focus:ring-orange-600 drop-shadow-xl" placeholder="example_name" type="text" id="userName" />
         </label>

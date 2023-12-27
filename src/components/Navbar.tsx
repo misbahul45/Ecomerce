@@ -77,26 +77,25 @@ export const Navbar = () => {
         setNavbarPosition(dataNavbar)
       },[dataNavbar])
   return (
-    <header className={`${bg?"bg-purple-700 shadow-2xl shadow-white/10":""} fixed left-0 top-0 flex flex-row-reverse md:flex-row justify-between items-center w-full h-16 px-10 z-30`}>
-        <div className="hidden md:flex gap-3 items-center">
+    <header className={`${bg?"bg-purple-700 shadow-2xl shadow-white/10":""} fixed left-0 top-0 flex  gap-5 justify-between items-center w-full h-16 px-10 z-30`}>
+        <div className=" flex gap-3 items-center">
             <button onClick={()=>handleRoute(navbar.home)} className={`button-navbar ${navbarPosition===navbar.home?"ring-2 ring-purple-400":""}`}>Home</button>
             <button onClick={()=>handleRoute(navbar.products)} className={`button-navbar ${navbarPosition===navbar.products?"ring-2 ring-purple-400":""}`}>Products</button>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-2">
            {
             name?
             <>
                 <ButtonIcon onClick={handleToCart } Icon={FaCartFlatbed} text={carts.length>0?carts.length:""}  className="relative p-1.5 hover:bg-gray-100 hover:scale-110 rounded-full transition-all duration-300" IconClassName="text-blue-500 text-3xl" textClassName="absolute -top-1 right-0 text-sm text-green-500 font-bold px-1.5 rounded-full bg-white" />
                 <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-green-600"></span>
-                    <h1 className="text-2xl text-slate-100 font-bold font-serif">{name}</h1>
+                    <h1 className="md:text-2xl text-sm text-slate-100 font-bold font-serif">{name}</h1>
                 </div>
-                <button onClick={handleLogOut} className="px-6 py-2 bg-red-600 text-slate-100 hover:bg-orange-900 transition-all duration-300 font-semibold rounded-full">Logout</button>
+                <button onClick={handleLogOut} className="md:px-6 px-3 md:py-2 text-sm bg-red-600 text-slate-100 hover:bg-orange-900 transition-all duration-300 md:font-semibold rounded-full">Logout</button>
             </>
             :
             <>
-                <button onClick={()=>handleRoute(navbar.login)} className="px-6 py-2 bg-blue-500 font-semibold text-slate-50 rounded-md shadow-md shadow-black/10 hover:bg-blue-600 transition-all duration-300">Login</button>
-                <button onClick={()=>handleRoute(navbar.signup)} className="px-6 py-2 bg-purple-600 font-semibold text-slate-50 rounded-md border-2 border-purple-400 hover:bg-purple-700 transition-all duration-300">Sign Up</button>
+                <button onClick={()=>handleRoute(navbar.login)} className="sm:px-6 px-2 sm:py-2 py-1 text-sm bg-blue-500 sm:font-semibold text-slate-50 rounded-md shadow-md shadow-black/10 hover:bg-blue-600 transition-all duration-300">Login</button>
+                <button onClick={()=>handleRoute(navbar.signup)} className="sm:px-6 px-2 sm:py-2 py-1 text-sm bg-purple-600 sm:font-semibold text-slate-50 rounded-md border-2 border-purple-400 hover:bg-purple-700 transition-all duration-300">Sign Up</button>
             </>
            }
         </div>

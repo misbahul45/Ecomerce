@@ -4,7 +4,7 @@
 
 @layer utilities{
   .button-navbar{
-    @apply px-5 py-1 rounded-full text-lg text-slate-100 font-semibold hover:bg-purple-900 hover:scale-110 transition-all duration-500
+    @apply md:px-5 px-2 py-1 rounded-full md:text-lg sm:text-xs text-sm text-slate-100 font-semibold hover:bg-purple-900 hover:scale-110 transition-all duration-500
   }
   .no-scrollbar::-webkit-scrollbar {
         display: none;
