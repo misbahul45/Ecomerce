@@ -12,14 +12,13 @@ const Footer = () => {
         })
     }
   return (
-    <div className="relative w-full bg-[url('/public/bg.svg')] bg-center px-32">
+    <div className="relative w-full bg-[url('/public/bg.svg')] bg-center lg:px-32 sm:px-12 px-1 text-center">
         <ButtonIcon onClick={handleToTop} Icon={FaArrowCircleUp} className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-100 rounded-full shadow-lg shadow-white/10 hover:scale-105 transition-all duration-200" IconClassName="text-4xl text-red-700" />
-        <div className="w-full flex justify-between items-center py-5">
+        <div className="w-full flex lg:flex-row flex-col  gap-5 lg:justify-between items-center py-5">
             <div className="flex-1">
-                <h1 className="text-3xl font-bold font-serif text-red-400">Knixxen <span className="text-orange-600">Shop</span></h1>
-                <p className="text-md text-slate-200">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis qui cumque ipsum maiores iste suscipit corrupti dicta possimus molestiae vero a asperiores consectetur accusantium aliquid, culpa enim labore? Recusandae, repudiandae?</p>
+                <h1 className="lg:text-3xl text-2xl font-bold font-serif text-red-400">Knixxen <span className="text-orange-600">Shop</span></h1>
+                <p className="lg:text-justify text-center text-md text-slate-200">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis qui cumque ipsum maiores iste suscipit corrupti dicta possimus molestiae vero a asperiores consectetur accusantium aliquid, culpa enim labore? Recusandae, repudiandae?</p>
             </div>
-            <h1 className=" pl-10 flex-1 text-center text-3xl text-orange-600 font-semibold capitalize">Customer satisfaction is our responsibility</h1>
             <div className="flex-1 flex flex-col gap-2 justify-center items-end">
                 <h1 className="text-xl font-bold font-serif text-red-400">Join <span className="text-orange-600">With Us</span></h1>
                 <div className="flex items-center gap-2">

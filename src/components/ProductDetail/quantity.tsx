@@ -12,10 +12,10 @@ const Quantity = ( { quantity, setQuantity }:QuantityProps) => {
         setQuantity((prev:number)=>prev+1)
     }
   return (
-    <div className="flex items-cente gap-4">
-      <button className={`px-2 bg-slate-500 rounded-sm ring-white ring-[1px] hover:scale-105 transition-all duration-300 ${quantity===1?"cursor-not-allowed":""}`} onClick={handleMinus}><FaMinus className="text-slate-50 text-sm" /></button>
-      <span className="text-lg text-slate-100 font-semibold">{ quantity }</span>
-      <button className="px-2 bg-red-700 rounded-sm ring-white ring-[1px] hover:scale-105 transition-all duration-300" onClick={handlePlus}><FaPlus className="text-slate-50 text-sm" /></button>
+    <div className="flex items-cente lg:gap-4 gap-3">
+      <button className={`lg:px-2 px-1 bg-slate-500 rounded-sm ring-white ring-[1px] hover:scale-105 transition-all duration-300 ${quantity===1?"cursor-not-allowed":""}`} onClick={handleMinus}><FaMinus className="text-slate-50 lg:text-sm text-xs" /></button>
+      <span className="lg:text-lg text-sm text-slate-100 font-semibold">{ quantity }</span>
+      <button className="lg:px-2 px-1 text-s bg-red-700 rounded-sm ring-white ring-[1px] hover:scale-105 transition-all duration-300" onClick={handlePlus}><FaPlus className="text-slate-50 lg:text-sm text-xs" /></button>
     </div>
   )
 }

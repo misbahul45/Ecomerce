@@ -16,9 +16,9 @@ const LabelSearch = ({data}:{data:string}) => {
         changeSearch("")
     }
     return(
-        <label htmlFor={data} className="flex items-center gap-2 w-[11rem] cursor-pointer group">
-            <input onChange={handleChangeData} checked={data !== "cheapest" && data !== "expensive" && data !== "Best Seller"?dataFilter===data:sortingData==data} className={`w-5 h-5 cursor-pointer`} type="checkbox" name="" id={data} />
-            <span className="text-lg capitalize text-slate-100 group-hover:text-red-400 group-hover:scale-105 transition-all duration-300">{data}</span>
+        <label htmlFor={data} className="flex items-center justify-center lg:gap-2 gap-1 lg:w-[11rem] md:w-[10rem] w-auto cursor-pointer group">
+            <input onChange={handleChangeData} checked={data !== "cheapest" && data !== "expensive" && data !== "Best Seller"?dataFilter===data:sortingData==data} className={`lg:w-5 lg:h-5 cursor-pointer`} type="checkbox" name="" id={data} />
+            <span className="lg:text-lg sm:text-md text-sm capitalize text-slate-100 group-hover:text-red-400 group-hover:scale-105 transition-all duration-300">{data}</span>
         </label>
     )
 }

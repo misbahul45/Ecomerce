@@ -48,7 +48,7 @@ const DisplayAllProduts = ({ dataProducts }: { dataProducts: [] }) => {
   }, [filteringProducts]);
 
   return(
-    <div className="mt-10 grid grid-cols-4 gap-8 px-10">
+    <div className="mt-10 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-8 gap-7 lg:px-10 sm:px-16 px-8">
         {
             allProductsDisplay.map((product:DisplayProducts,index:number)=>(
                 <ProductItem

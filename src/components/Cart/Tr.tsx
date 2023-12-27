@@ -76,12 +76,12 @@ const Tr = ({ product, setCarts, setCheckoutData }:Props) => {
 
   return (
     <tr className="border-t-2 w-full text-center">
-        <td className="pl-7">
+        <td className="lg:pl-7 pl-2">
             <ButtonIcon onClick={handleCheckoutProduct} Icon={checkout?MdOutlineRadioButtonChecked:MdOutlineRadioButtonUnchecked} className="block mx-auto drop-shadow-sm rounded-full" IconClassName={`text-3xl ${checkout?"text-red-500":"text-slate-200"}`} />
         </td>
-        <td className="flex items-center justify-center gap-5 py-4">
-            <img className="max-h-24" src={product.image} alt="" />
-            <span className="text-slate-100 text-xl">{product.title.substring(0,product.title.lastIndexOf(" ",20))}</span>
+        <td className="flex lg:flex-row flex-col items-center justify-center gap-5 py-4">
+            <img className="lg:max-h-24 w-16" src={product.image} alt="" />
+            <span className="text-slate-100 lg:text-lg text-sm">{product.title.substring(0,product.title.lastIndexOf(" ",20))}</span>
         </td>
         <td>
            <div className="flex justify-center">
@@ -89,10 +89,10 @@ const Tr = ({ product, setCarts, setCheckoutData }:Props) => {
            </div>
         </td>
         <td>
-            <span className="text-orange-500 text-2xl">{(quantity* product.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
+            <span className="text-orange-500 lg:text-2xl sm:text-xl text-sm">{(quantity* product.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
         </td>
         <td>
-            <ButtonIcon onClick={handleDelete} className="group" Icon={MdDeleteForever} IconClassName="text-3xl text-red-700 group-hover:scale-110 transition-all duration-300" />
+            <ButtonIcon onClick={handleDelete} className="group" Icon={MdDeleteForever} IconClassName="lg:text-3xl text-lg text-red-700 group-hover:scale-110 transition-all duration-300" />
         </td>
     </tr>
   )

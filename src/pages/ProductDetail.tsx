@@ -34,7 +34,7 @@ const ProductDetail = () => {
         <div className="w-full">
           <DisplayProduct product={product} />
           <div></div>
-          <div className="relative pb-20 mt-10 pl-10 flex overflow-x-scroll no-scrollbar gap-5">
+          <div className="relative pb-20 mt-10 sm:pl-10 px-8 sm:flex overflow-x-scroll no-scrollbar gap-5">
             {!productsLoading &&
               products.map((product: DisplayProducts, index: number) => (
                 <ProductItem

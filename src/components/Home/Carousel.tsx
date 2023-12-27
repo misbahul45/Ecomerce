@@ -38,14 +38,14 @@ const Carousel = () => {
         setAnimate(true)
       }
   return (
-    <div className="relative px-20 flex flex-col  items-center">
-        <div className="absolute left-12 top-1/2 -translate-y-1/2 bg-white rotate-45 w-16 h-16 group z-10">
-        <button onClick={handlePrevImage} className="bg-purple-600 w-12 h-12 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 group-hover:w-16 group-hover:h-16 transition-all duration-100">
-            <MdArrowBackIosNew className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-3xl -rotate-45" />
-        </button>
+    <div className="relative lg:px-20 px-5 flex flex-col  items-center">
+        <div className="lg:block hidden absolute left-12 top-1/2 -translate-y-1/2 bg-white rotate-45 w-16 h-16 group z-10">
+            <button onClick={handlePrevImage} className="bg-purple-600 w-12 h-12 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 group-hover:w-16 group-hover:h-16 transition-all duration-100">
+                <MdArrowBackIosNew className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-3xl -rotate-45" />
+            </button>
         </div>
         <div className="w-full">
-            <img className={`w-full h-[30rem] object-cover rounded-sm ${animate?"opacity-0":"opacity-100"} transition-all duration-200 drop-shadow-2xl`} src={images[currentImg]} alt="" />
+            <img className={`w-full md:h-[30rem] object-cover lg:rounded-sm rounded-lg shadow-2xl shadow-black/20 ${animate?"opacity-0":"opacity-100"} transition-all duration-200 drop-shadow-2xl`} src={images[currentImg]} alt="" />
             <div className="flex gap-1 justify-center mt-4">
                 {
                 images.map((_,index:number)=>(
@@ -54,7 +54,7 @@ const Carousel = () => {
                 }
             </div>
         </div>
-        <div className="absolute right-12 top-1/2 -translate-y-1/2 bg-white rotate-45 w-16 h-16 group z-10">
+        <div className="lg:block hidden absolute right-12 top-1/2 -translate-y-1/2 bg-white rotate-45 w-16 h-16 group z-10">
             <button onClick={handleNextImage} className="bg-purple-600 w-12 h-12 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 group-hover:w-16 group-hover:h-16 transition-all duration-100">
                 <MdArrowForwardIos className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-3xl -rotate-45" />
             </button>

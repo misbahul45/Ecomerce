@@ -46,16 +46,16 @@ const DisplayProduct = ({product}:Props) => {
         navigate("/cart")
     }
   return (
-    <div className="flex w-full px-20 gap-10">
+    <div className="flex lg:flex-row flex-col w-full lg:px-20  px-8 gap-10">
         <div className="flex justify-center items-center">
             <img src={product.image} className="max-h-96" />
         </div>
         <div className="flex-1 flex flex-col items-start">
-            <h1 className="text-4xl text-slate-50 font-bold font-serif">{product.title}</h1>
+            <h1 className="lg:text-4xl sm:text-2xl text-lg text-slate-50 font-bold font-serif">{product.title}</h1>
             <span className="mt-2 flex items-center">{star}</span>
-            <p className=" mt-4 text-lg text-slate-200">{product.description}</p>
+            <p className=" mt-4 lg:text-lg sm:text-md text-sm text-slate-200">{product.description}</p>
             <p className="mt-4 flex flex-col">
-                <span className="text-3xl text-orange-600 font-semibold">{(product.price*quantity).toLocaleString('en-US', {
+                <span className="lg:text-3xl sm:text-xl text-sm text-orange-600 font-semibold">{(product.price*quantity).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',
                         })}
@@ -71,13 +71,13 @@ const DisplayProduct = ({product}:Props) => {
                 <span className="text-slate-300 text-xl">{product.rating.count} amount </span>
             </div>
             <div className="flex items-center gap-6 mt-8">
-                <button onClick={handleAddToCart} className="flex items-center justify-center gap-4 w-48 h-11 bg-orange-600 ring-2 ring-slate-100 rounded-full hover:bg-yellow-600 hover:scale-105 transition-all duration-300">
+                <button onClick={handleAddToCart} className="flex items-center justify-center gap-4 sm:w-48 sm:px-0 px-10 h-11 bg-orange-600 ring-2 ring-slate-100 rounded-full hover:bg-yellow-600 hover:scale-105 transition-all duration-300">
                     <FaCartPlus className="text-xl text-slate-100" />
-                    <span className="font-semibold text-sm font-serif text-slate-100">Add To Cart</span>
+                    <span className="sm:block hidden font-semibold text-sm font-serif text-slate-100">Add To Cart</span>
                 </button>
-                <button onClick={handleToCheckout} className="flex items-center justify-center gap-4 w-48 h-11 bg-red-600 ring-2 ring-slate-100 rounded-full hover:bg-green-600 hover:scale-105 transition-all duration-300">
+                <button onClick={handleToCheckout} className="flex items-center justify-center gap-4 sm:w-48 px-10 sm:px-0  h-11 bg-red-600 ring-2 ring-slate-100 rounded-full hover:bg-green-600 hover:scale-105 transition-all duration-300">
                     <FaTruckPickup className="text-xl text-slate-100" />
-                    <span className="font-semibold text-sm text-slate-100">Checkout</span>
+                    <span className="sm:block hidden font-semibold text-sm text-slate-100">Checkout</span>
                 </button>
             </div>
         </div>
