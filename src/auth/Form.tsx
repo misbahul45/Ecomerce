@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { loginUser, signUpUser } from "../API/APi";
 import {  useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
-import { useAuth } from "../Store/store";
+import { UserData, useAuth } from "../Store/store";
 
 const FormAuth = ({ signUp }:{ signUp:boolean }) => {
     const [userName,setUserName]=useState('')
@@ -26,7 +26,7 @@ const FormAuth = ({ signUp }:{ signUp:boolean }) => {
         }),
         onSuccess:(data)=>{
             navigate('/')
-            const userValue=jwtDecode(data.data.token)
+            const userValue=jwtDecode(data.data.token) as UserData
             changeAuth({...userValue, carts:[], checkout:[]})
         }
     })

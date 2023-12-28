@@ -30,7 +30,7 @@ export interface CartItem {
   quantity: number;
 }
 
-interface UserData {
+export interface UserData {
   id:number;
   email:string;
   password:string;

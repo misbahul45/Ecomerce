@@ -53,7 +53,11 @@ export const Navbar = () => {
     }
     const handleLogOut=()=>{
         userLogOut(userAuth)
-        changeAuth({  
+        changeAuth({
+            id:0,
+            email:'',
+            password:'',
+            user:'',
             carts: [],
             checkout:[]
         })
