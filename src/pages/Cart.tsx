@@ -42,7 +42,7 @@ const Cart = () => {
       </div>
       {
         checkoutData.length>0&&
-        <div className="fixed bottom-0 left-0 w-full h-16 bg-[url('/public/bg.svg')] bg-center flex items-center gap-4 lg:justify-end justify-between lg:pr-10 px-5 z-20">
+        <div className="fixed bottom-0 left-0 w-full h-16 bg-[url('src/assets/bg.svg')] bg-center flex items-center gap-4 lg:justify-end justify-between lg:pr-10 px-5 z-20">
           <h1 className="text-slate-100 lg:text-xl font-semibold">Total Products : {checkoutProduct} </h1>
           <span className="text-orange-500 lg:text-3xl text-lg font-semibold">
             {totalPrice.toLocaleString('en-US', {
