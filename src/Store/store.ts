@@ -31,6 +31,10 @@ export interface CartItem {
 }
 
 interface UserData {
+  id:number;
+  email:string;
+  password:string;
+  user:string;
   carts: CartItem[];
   checkout: CartItem[];
 }
@@ -89,7 +93,7 @@ export const useNavbar = create<NavbarData>(
 
 export const useAuth = create<AuthData>(
   (persist as AuthDataType)((set): AuthData => ({
-    data: { carts: [], checkout: [] },
+    data:{carts:[], checkout:[], user:"", id:0, password:"", email:"" },
     changeAuth: (value) => set({ data: value }),
     addToCarts: (value) => set((state) => {
       const findValue = state.data.carts.findIndex((item) => item.id === value.id);

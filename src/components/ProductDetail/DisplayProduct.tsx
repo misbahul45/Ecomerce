@@ -13,6 +13,7 @@ interface Props{
 
 const DisplayProduct = ({product}:Props) => {
     const [quantity, setQuantity]=useState<number>(1)
+    const user=useAuth((state)=>state.data.email)
     const addToCarts=useAuth((state)=>state.addToCarts)
     const addToCheckout=useAuth((state)=>state.addCheckOut)
     const navigate=useNavigate()
@@ -29,21 +30,25 @@ const DisplayProduct = ({product}:Props) => {
        }
     }
     const handleAddToCart=()=>{
-        addToCarts({
-            ...product,
-             quantity 
-           })
+        if(user){
+            addToCarts({
+                ...product,
+                 quantity 
+               })
+        }
     }
     const handleToCheckout=()=>{
-        addToCarts({
-            ...product,
-             quantity 
-        })
-        addToCheckout({
-            ...product,
-            quantity
-        })   
-        navigate("/cart")
+        if(user){
+            addToCarts({
+                ...product,
+                 quantity 
+            })
+            addToCheckout({
+                ...product,
+                quantity
+            })   
+            navigate("/cart")
+        }
     }
   return (
     <div className="flex lg:flex-row flex-col w-full lg:px-20  px-8 gap-10">
